@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Foltran's Blog</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link href="../css/clean-blog.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="../index.html">Start Bootstrap</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="../index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../post.html">Sample Post</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('../img/deploy_rocket_image.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>How to Deploy an iOS app on Azure</h1>
+            <h2 class="subheading">Building, signing and deploying an iOS app using Azure Pipelines</h2>
+            <span class="meta">Posted by
+              <a href="#">Foltran</a>
+              on September 15, 2020</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Post Content -->
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+
+          <h2 class="section-heading">Initial Setup</h2>
+          <p>This consists of simply choosing the branch in the repo the app you wish to build is on and 
+            what Virtual Machine you wish to use. For this sample app, we pick the master branch. 
+            We also pick a Mac OS image since we will be needing Xcode to build the application.</p>
+          
+          <script src="https://gist.github.com/frezafoltran/f12dd9c412ae5948ddabdd968ee4c18a.js"></script>
+
+          <h2 class="section-heading">Handle Dependencies</h2>
+          <p>Now we need to install all needed dependencies. For NPM, we must first install Node. Then
+            we run a npm install to install the dependencies and do the same for the packages managed 
+            by CocoaPods. We set forceRepoUpdate: false since we do not wish to update the repo on 
+            every build. 
+          </p>
+
+          <p>Basically, setting forceRepoUpdate: true would run pod repo update, which is usually 
+            used to update the list of libraries available after some other specification of the 
+            project changed (i.e. Swift updated to a new version).</p>
+
+          <script src="https://gist.github.com/frezafoltran/c15ba1bea6de023e7bb3951433ab7aff.js"></script>
+
+          <h2 class="section-heading">Install Apple Certificates and Profiles</h2>
+          <p>
+            Now we install the two file necessary to sign and run the iOS app in a physical device. 
+            We install the certificate that will authenticate and sign our app with the InstallAppleCertificate@2 task.
+            Here, we also select Temporary Keychain so that MS deletes the certificate after the build is completed for security. 
+          </p>
+            
+          <p>To install the Provisioning Profile, use the InstallAppleProvisioningProfile@1 task and set removeProfile: true to 
+            have MS delete the profile after build is complete for security.
+          </p>
+
+          <script src="https://gist.github.com/frezafoltran/d4b4d8452cbd21e0bc8f46ef78599d8d.js"></script>
+
+          <h2 class="section-heading">Build the app</h2>
+          <p>
+            Now we use Xcode to build the app. The below specifies where to find the certificate and 
+            provisioning profile variables (although you could select auto-signing and have these 
+            variables set automatically, as of now, Azure Pipelines is a bit unstable with the auto feature, 
+            thus I'd recommend the manual signing). 
+          </p>
+
+          <p>
+            We must also specify the SDK to build on, which is usually the iphone os. 
+            The configuration variable indicates whether this is a Distribution or Development build
+            (this must match the certificates used). And the xcWorkspacePath must point to the .xcworkspace 
+            file in your project. In this case, this is a React Native app with the iOS files inside the ios folder.
+          </p>
+
+          <script src="https://gist.github.com/frezafoltran/ccf1073f2a8f1283ae57c172b4932d87.js"></script>
+
+
+          <h2 class="section-heading">Publish build Artifact</h2>
+          <p>
+            The part for publishing the build artifact is a boilerplate code and is included in 
+            the full version of the pipeline below. Further, you can check out <a href="#">TODO</a> to learn 
+            how to create a release pipeline to push the .ipa to AppCenter.
+          </p>
+          <script src="https://gist.github.com/frezafoltran/82962b16b3a9e6b52b4f8b075f152975.js"></script>
+
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline text-center">
+            <li class="list-inline-item">
+              <a href="#">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+          </ul>
+          <p class="copyright text-muted">Copyright &copy; Your Website 2020</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="../js/clean-blog.min.js"></script>
+
+</body>
+
+</html>
