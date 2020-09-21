@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Foltran's Blog</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link href="../../../css/clean-blog.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="../../../index.html">Foltran's Blog</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="../../../index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../../../about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../../../post.html">Sample Post</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../../../contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('../../../img/deploy_rocket_image.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>How to Sign an Android App</h1>
+            <h2 class="subheading">TODO</h2>
+            <span class="meta">Posted by
+              <a href="#">Foltran</a>
+              on September 21, 2020</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Post Content -->
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+
+            <h2 class="section-heading">Why sign the iOS app?</h2>
+            <p>The app needs to be signed for security reasons. 
+            In the case of iOS apps, 🍏 requires that apps are signed 
+            and authenticated prior to being released in the App Store or installed in iOS devices.</p>
+          
+            <h2 class="section-heading">Create an Apple Developer account</h2>  
+            <p>If you don't have one, you'll need to create an Apple developer account. 
+                You can simply follow the steps <a href="https://developer.apple.com/">here</a> to get one.</p>
+
+            <h2 class="section-heading">Generate a Certificate</h2>
+            <p>Once you have the developer account, go to your Certificates page: 
+                <a href="https://developer.apple.com/account/resources/certificates/list">developer.apple.com/account/resources/certificates/list</a>
+                If you are still developing the app, you will need to create a Development Certificate. If you are ready to publish your app in the app store,
+                create a Distribution Certificate. Follow the steps on Apple to generate a CSR (Certificate Signing Request) locally and upload it to download
+                the Certificate.
+            </p>
+
+            <h2 class="section-heading">Generate an Identifier</h2>
+            <p>Now you need to register an identifier to identify your app to Apple. In this step, if desired, you can also create a wildcard id that would work with any app.</p>
+            
+            <h2 class="section-heading">Register Test Devices</h2>
+            <p>If you are developing your app, you will need to register what devices you wish to test your app with. For this, you </p>
+
+
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline text-center">
+            <li class="list-inline-item">
+              <a href="#">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+          </ul>
+          <p class="copyright text-muted">Copyright &copy; Your Website 2020</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="../../../vendor/jquery/jquery.min.js"></script>
+  <script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="../../../js/clean-blog.min.js"></script>
+
+</body>
+
+</html>
